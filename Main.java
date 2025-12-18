@@ -3,9 +3,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
-
         User user = new User("Guest");
         OrderManager orderManager = new OrderManager();
         orderManager.subscribe(user);
@@ -15,7 +13,6 @@ public class Main {
         System.out.println("=== DELIVERING SYSTEM <<Delivo>> ===");
 
         while (true) {
-
             System.out.println("\nChoose role:");
             System.out.println("1) User");
             System.out.println("2) Admin");
@@ -28,7 +25,6 @@ public class Main {
                 System.out.println("Bye!");
                 return;
             }
-
             switch (role) {
                 case "1" -> userMenu(sc, factory, orderManager, user);
                 case "2" -> adminMenu(sc, orderManager);
@@ -40,9 +36,7 @@ public class Main {
     /* ================= USER MENU ================= */
 
     private static void userMenu(Scanner sc, FoodFactory factory, OrderManager manager, User user) {
-
         while (true) {
-
             System.out.println("\n--- USER MENU ---");
             System.out.println("1) Show menu");
             System.out.println("2) Create order");
@@ -65,9 +59,7 @@ public class Main {
     /* ================= ADMIN MENU ================= */
 
     private static void adminMenu(Scanner sc, OrderManager manager) {
-
         while (true) {
-
             System.out.println("\n--- ADMIN MENU ---");
             System.out.println("1) Update order status");
             System.out.println("0) Logout");
@@ -86,7 +78,6 @@ public class Main {
     /* ================= MENU ================= */
 
     private static void showMenu(Scanner sc, FoodFactory factory) {
-
         while (true) {
             printFoodMenu();
             System.out.println("0) Back");
@@ -107,11 +98,8 @@ public class Main {
     /* ================= ORDER ================= */
 
     private static void createOrder(Scanner sc, FoodFactory factory, OrderManager manager, User user) {
-
         Cart cart = new Cart();
-
         while (true) {
-
             System.out.println("\n--- CART ---");
             cart.print();
             System.out.println("1) Add food");
@@ -142,7 +130,6 @@ public class Main {
     }
 
     private static Food chooseFood(Scanner sc, FoodFactory factory) {
-
         printFoodMenu();
         System.out.println("0) Back");
         System.out.print("Choose food: ");
@@ -159,17 +146,14 @@ public class Main {
     /* ================= EXTRAS ================= */
 
     private static Food chooseExtras(Scanner sc, Food base) {
-
         List<String> remaining = new ArrayList<>(allowedExtras(base.type()));
         Food result = base;
 
         while (!remaining.isEmpty()) {
-
             System.out.println("\nExtras for " + base.name() + ":");
             for (int i = 0; i < remaining.size(); i++) {
                 System.out.println((i + 1) + ") " + remaining.get(i));
             }
-
             System.out.println("0) Finish extras");
             System.out.print("Choose extra: ");
 
@@ -192,12 +176,10 @@ public class Main {
     /* ================= STATUS ================= */
 
     private static void updateStatus(Scanner sc, OrderManager manager) {
-
         if (!manager.hasOrders()) {
             System.out.println("No orders yet.");
             return;
         }
-
         manager.printAllOrders();
 
         System.out.print("Enter order ID: ");
@@ -226,7 +208,6 @@ public class Main {
 
 
     private static void viewOrders(User user) {
-
         if (user.getOrders().isEmpty()) {
             System.out.println("No orders.");
             return;
@@ -291,7 +272,6 @@ public class Main {
                 extras.add("LARGE");
                 break;
         }
-
         return extras;
     }
 
